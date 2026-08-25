@@ -1,5 +1,3 @@
-# data-analysis-portfolio
-データ分析学習用ポートフォリオ
 # Data Analysis Portfolio
 
 SQL / BigQueryを使用したデータ分析の学習・演習をまとめたポートフォリオです。
