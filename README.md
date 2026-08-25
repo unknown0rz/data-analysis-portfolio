@@ -66,11 +66,3 @@ Android新規ユーザーにおいて、決済エラー修正後もKPIが改善�
 ### SQL
 
 [分析SQLを見る](./sql/01_android_payment_error_analysis.sql)
-
----
-
-## About
-
-データ分析職を目指し、SQL / BigQueryを中心にデータ分析を学習しています。
-
-今後もWeb・ECサービスなどを想定した分析演習を追加していきます。
