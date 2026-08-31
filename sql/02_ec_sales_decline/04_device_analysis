@@ -1,0 +1,14 @@
+SELECT
+  period,
+  device,
+  SUM(payment) AS payment_users,
+  SUM(purchase) AS purchase_users,
+  ROUND(
+    SAFE_DIVIDE(SUM(purchase),SUM(payment))*100,1
+  ) AS complete_rate
+FROM
+  `thelook-ecommerce-502702.sql_project2.ec_sales_analysis`
+WHERE
+  user_segment = 'new'
+GROUP BY
+  device,period

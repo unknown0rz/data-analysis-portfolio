@@ -45,9 +45,9 @@ Android新規ユーザーにおいて、決済エラー修正後もKPIが改善�
 
 ### 分析結果
 
-| Error Type | 修正前 | 修正後 | 変化 |
+| Error Type        | 修正前 | 修正後 | 変化 |
 | payment_api_error | 7.1% | 22.2% | +15.1pt |
-| timeout_error | 2.4% | 14.8% | +12.4pt |
+| timeout_error     | 2.4% | 14.8% | +12.4pt |
 
 ### 考察
 
@@ -66,3 +66,85 @@ Android新規ユーザーにおいて、決済エラー修正後もKPIが改善�
 ### SQL
 
 [分析SQLを見る](./sql/01_android_payment_error_analysis.sql)
+
+
+---
+
+## 02. ECサイト売上低下の原因分析
+
+### 目的
+
+ECサイトで発生した売上低下について、
+KPI・ユーザーセグメント・ファネル・デバイス・エラーの観点から原因を分析しました。
+
+### 使用データ
+
+ECサイトのユーザー行動を想定した学習用の架空データを使用。
+
+- 期間：2026年8月
+- レコード数：3,600行
+- 主な項目：ユーザー属性、デバイス、流入元、購入ファネル、エラー種別、購入金額
+- [分析データを見る](./data/ec_sales_decline_portfolio.csv)
+
+### 分析内容
+
+1. 全体KPIをBefore / Afterで比較
+2. ユーザーセグメント別にCVRを比較
+3. 新規ユーザーの購入ファネルを分析
+4. デバイス別にpayment → purchase完了率を比較
+5. Android新規ユーザーのエラー内容を分析
+
+### 分析結果
+
+- 全体KPI：訪問者数：1800→1800(変化なし)
+　　　　　　購入者数：452→398(減少)
+　　　　　　売上2,786,003→2,595,454(減少)
+　　　　　　CVR：25.1%→22.1%(-3.0pt)
+
+　　　　　　「集客減ではなく、購入率低下が売上減少に関係している可能性がある」
+　　　　　　→ユーザー層ごとのKPIを見たいのでセグメント分析する必要がある
+
+- セグメント：新規ユーザー　訪問者：678 → 680 → ほぼ変化なし
+　　　　　　　　　　　　　　AOV：4,091円 → 4,202円 → 上昇
+　　　　　　　　　　　　　　購入者：166 → 125 → 約24.7%減
+　　　　　　　　　　　　　　売上：679,050円 → 525,290円 → 約22.6%減
+　　　　　　　　　　　　　　CVR：24.5% → 18.4% → -6.1pt
+
+　　　　　　　「新規ユーザーの集客ではなく、購入完了までの間に何かの問題がある可能性が高い」
+　　　　　　　→どこで離脱しているかファネル分析する必要がある
+
+- ファネル： 区間                        Before     After        変化
+　　　　　　 visit → view                74.8%      76.3%       +1.5pt 
+　　　　　　 view → cart                 55.4%      56.5%       +1.1pt 
+　　　　　　 cart → payment              71.9%      70.0%       -1.9pt 
+　　　　　　 payment → purchase          82.2%      61.0%       -21.2pt
+
+　　　　　　「決済画面到達から購入完了までの離脱増加が主要因の可能性が高い」
+　　　　　　→次にpayment→purchaseの区間に絞って離脱率をデバイスごとに深掘ってみる
+
+- デバイス： device          Before      After        変化
+　　　　　　 iOS              84.4%      78.5%       -5.9pt 
+　　　　　　 PC               80.0%      86.8%       +6.8pt 
+　　　　　　 Android          81.2%      34.1%       -47.1pt 
+
+　　　　　　「Androidのみ大きく変化が見られる」
+　　　　　　→新規Androidユーザーにおいて何かしらのエラーが発生している可能性があるので、エラータイプ別に件数を出す
+
+- エラー： timeout_error：1件 → 47件
+　　　　   payment_api_error：3件 → 11件
+
+        「決済処理時のエラー、特にtimeout_errorの急増がCVR低下の主要因である可能性がある」
+
+### 考察・提案
+
+新規Androidユーザーにおいて、payment→purchase完了率が81.2%から34.1%へ47.1pt低下している。
+同期間にtimeout_errorが1件→47件、payment_api_errorも3件→11件に増加していることから、決済処理時のエラー、特にtimeout_errorの急増がCVR低下の主要因である可能性がある。
+開発側で新規Androidユーザーの決済処理およびtimeout_errorの発生原因を確認し、修正対応を依頼する
+
+### SQL
+
+- [全体KPI分析](./sql/02_ec_sales_decline/01_overall_kpi.sql)
+- [セグメント分析](./sql/02_ec_sales_decline/02_segment_analysis.sql)
+- [新規ユーザーのファネル分析](./sql/02_ec_sales_decline/03_new_user_funnel.sql)
+- [デバイス分析](./sql/02_ec_sales_decline/04_device_analysis.sql)
+- [エラー分析](./sql/02_ec_sales_decline/05_error_analysis.sql)

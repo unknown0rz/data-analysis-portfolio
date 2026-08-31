@@ -1,0 +1,14 @@
+SELECT
+  period,
+  error_type,
+  COUNT(*) AS error_count
+FROM
+  `thelook-ecommerce-502702.sql_project2.ec_sales_analysis`
+WHERE
+  user_segment = 'new'
+  AND device = 'Android'
+  AND error_type !='none'
+GROUP BY
+  period,error_type
+ORDER BY
+  period,error_type DESC

@@ -1,0 +1,15 @@
+SELECT
+  period,
+  SUM(visit) AS users,
+  SUM(purchase) AS total_purchase,
+  SUM(purchase_amount) AS total_sales,
+  ROUND(
+    SAFE_DIVIDE(SUM(purchase),SUM(visit))*100,1
+  ) AS CVR,
+  ROUND(
+    SAFE_DIVIDE(SUM(purchase_amount),SUM(purchase)),0
+  ) AS AOV
+FROM
+  `thelook-ecommerce-502702.sql_project2.ec_sales_analysis`
+GROUP BY
+  period

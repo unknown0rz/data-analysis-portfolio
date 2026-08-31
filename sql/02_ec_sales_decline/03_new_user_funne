@@ -1,0 +1,29 @@
+WITH view1 AS(
+  SELECT
+    period,
+    SUM(visit) AS step1_visit,
+    SUM(product_view) AS step2_view,
+    SUM(cart) AS step3_cart,
+    SUM(payment) AS step4_payment,
+    SUM(purchase) AS step5_purchase
+  FROM
+    `thelook-ecommerce-502702.sql_project2.ec_sales_analysis`
+  WHERE
+    user_segment = 'new'
+  GROUP BY
+  period
+)
+
+SELECT
+  step1_visit,
+  step2_view,
+  step3_cart,
+  step4_payment,
+  step5_purchase,
+
+  ROUND(SAFE_DIVIDE(step2_view,step1_visit)*100,1) AS view_per_visit,
+  ROUND(SAFE_DIVIDE(step3_cart,step2_view)*100,1) AS cart_per_view,
+  ROUND(SAFE_DIVIDE(step4_payment,step3_cart)*100,1) AS payment_per_cart,
+  ROUND(SAFE_DIVIDE(step5_purchase,step4_payment)*100,1) AS purchase_per_payment
+FROM
+  view1
