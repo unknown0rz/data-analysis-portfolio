@@ -31,7 +31,7 @@ SQL / BigQueryを使ったデータ分析のポートフォリオです。
 
 ### 分析結果
 
-![遅延グループ別の低評価割合](images/delay_vs_low_score.png)
+![遅延グループ別の低評価割合](olist_delivery_analysis/sql/image/delay_vs_low_score.png)
 
 | 遅延グループ | 注文数 | 平均評価 | 低評価割合(1〜2点) |
 | --- | --- | --- | --- |
@@ -54,6 +54,6 @@ SQL / BigQueryを使ったデータ分析のポートフォリオです。
 他の要因が影響している可能性もあるため、今後はそれらの要因も含めて検証したい。
 
 ### SQL
-- [遅延日数とレビュー点数の抽出](sql/01_olist_delivery/01_base.sql)
-- [2グループ比較](sql/01_olist_delivery/02_two_groups.sql)
-- [7グループ比較](sql/01_olist_delivery/03_seven_groups.sql)
+- [遅延日数とレビュー点数の抽出](olist_delivery_analysis/sql/01_base.sql)
+- [2グループ比較](olist_delivery_analysis/sql/02_two_groups.sql)
+- [7グループ比較](olist_delivery_analysis/sql/03_seven_groups.sql)
