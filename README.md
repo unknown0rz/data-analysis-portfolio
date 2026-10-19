@@ -7,8 +7,8 @@ SQL / BigQueryを使ったデータ分析のポートフォリオです。
 ## Skills
 
 - SQL(BigQuery):JOIN / CTE(WITH) / CASE WHEN / 条件付き集計 / ウィンドウ関数(LAG など)
-- Excel:データの読み込み、グラフ作成
-- Git / GitHub
+- Excel:グラフ作成
+- Looker Studio:ダッシュボード作成
 
 ---
 
