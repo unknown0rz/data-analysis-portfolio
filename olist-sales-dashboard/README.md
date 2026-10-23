@@ -2,7 +2,7 @@
 
 ダッシュボード:[Looker Studioで見る](https://datastudio.google.com/reporting/5e74d9b7-a609-4640-bc0b-cf9966f811c5)
 
-![ダッシュボード](images/dashboard.png)
+![ダッシュボード](![alt text](image.png))
 
 ## 概要
 
