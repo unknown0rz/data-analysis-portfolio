@@ -13,7 +13,7 @@ SELECT
   CASE WHEN delay_days >= 1 THEN "遅れた"
        ELSE "遅れていない"
   END AS delay_group,
-  COUNT(*) AS orders,
+  COUNT(*) AS review_count,
   ROUND(AVG(review_score), 2) AS avg_score,
   ROUND(AVG(IF(review_score <= 2, 1, 0)) * 100, 1) AS low_score
 FROM base
