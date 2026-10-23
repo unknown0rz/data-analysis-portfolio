@@ -1,7 +1,3 @@
---title:月次売上・増減率
---条件：2017年1月～2018年8月までの期間（2016年と2018年の9月以降のデータは除外）
---　　　order_statusがdeliveredのデータのみを対象
-
 WITH month AS (
 SELECT
   DATE_TRUNC(o.order_purchase_timestamp,MONTH) AS order_month,
