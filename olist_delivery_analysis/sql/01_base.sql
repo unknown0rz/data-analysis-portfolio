@@ -1,6 +1,3 @@
--- 目的:注文ごとの配送遅延日数とレビュー点数を抽出する
--- データ:Olist(Kaggle)の orders / reviews、配達済みの注文のみ
--- delay_days:実際の配達日 - 予定配達日(プラス=遅延、マイナス=早着)
 SELECT
   DATE_DIFF(DATE(o.order_delivered_customer_date),
             DATE(o.order_estimated_delivery_date), DAY) AS delay_days,
