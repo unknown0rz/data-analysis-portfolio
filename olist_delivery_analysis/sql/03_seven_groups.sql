@@ -19,7 +19,7 @@ SELECT
     WHEN delay_days <= 14 THEN "6_8〜14日遅れ"
     ELSE "7_15日以上遅れ"
   END AS delay_group,
-  COUNT(*) AS orders,
+  COUNT(*) AS review_count,
   ROUND(AVG(review_score), 2) AS avg_score,
   ROUND(AVG(IF(review_score <= 2, 1, 0)) * 100, 1) AS low_score
 FROM base
