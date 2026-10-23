@@ -1,8 +1,3 @@
-
---title:地域別売上・購入数・平均単価
---条件：2017年1月～2018年8月までの期間（2016年と2018年の9月以降のデータは除外）
---　　　order_statusがdeliveredのデータのみを対象
-
 WITH customer AS (
 SELECT
   c.customer_state,
@@ -49,7 +44,7 @@ SELECT
     WHEN customer_state = 'MG' THEN 'ミナスジェライス州(MG)'
     WHEN customer_state = 'RS' THEN 'リオグランデ・ド・スル州(RS)'
     WHEN customer_state = 'PR' THEN 'パラナ州(PR)'
-    WHEN customer_state = 'SC' THEN 'サンタカリナ州(SC)'
+    WHEN customer_state = 'SC' THEN 'サンタカタリーナ州(SC)'
     WHEN customer_state = 'BA' THEN 'バイーア州(BA)'
     WHEN customer_state = 'DF' THEN 'ブラジリア(DF)'
     WHEN customer_state = 'GO' THEN 'ゴイアス州(GO)'
