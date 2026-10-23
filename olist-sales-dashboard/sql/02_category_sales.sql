@@ -1,7 +1,3 @@
---title:カテゴリ別売上・購入数・平均単価
---条件：2017年1月～2018年8月までの期間（2016年と2018年の9月以降のデータは除外）
---　　　order_statusがdeliveredのデータのみを対象
-
 WITH category AS (
 SELECT
   ROUND(SUM(i.price),0) AS total_sales,
