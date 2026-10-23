@@ -1,5 +1,3 @@
--- 目的:遅延の有無でレビュー評価を比較する
--- 低評価:review_score が1〜2点
 WITH base AS (
   SELECT
     DATE_DIFF(DATE(o.order_delivered_customer_date),
