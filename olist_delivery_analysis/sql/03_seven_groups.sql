@@ -1,4 +1,3 @@
--- 目的:何日遅れからレビュー評価が大きく下がるかを確認する
 WITH base AS (
   SELECT
     DATE_DIFF(DATE(o.order_delivered_customer_date),
