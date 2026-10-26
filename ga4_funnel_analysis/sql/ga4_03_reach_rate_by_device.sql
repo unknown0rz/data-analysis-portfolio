@@ -1,7 +1,3 @@
---仮説「スマホの人は入力が面倒で離れやすい」
---結果「tablet 61.2%・mobile 60.1%・desktop 59.2% とほぼ差が無い」仮説は支持されなかった
---注意点9,714人→9,851人のズレ → 端末を跨いでる人が重なって数えられている
-
 WITH prev1 AS (
 SELECT
   device.category,
@@ -21,7 +17,11 @@ GROUP BY
 )
 
 SELECT
-  category,
+  CASE WHEN category = 'desktop' THEN 'デスクトップ'
+       WHEN category = 'mobile' THEN 'モバイル'
+       WHEN category = 'tablet' THEN 'タブレット'
+       ELSE category
+  END AS device,
   add_shipping_users,
   add_payment_users,
   
