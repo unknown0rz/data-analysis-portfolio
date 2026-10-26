@@ -2,7 +2,7 @@
 
 ダッシュボード:[Looker Studioで見る](https://datastudio.google.com/reporting/2622ee51-e0ef-4960-9e56-24cfc83aec76/page/TlfBG)
 
-![ダッシュボード](images/dashboard.png)
+![ダッシュボード]!(images/dashboard.png)
 
 ## 概要
 
