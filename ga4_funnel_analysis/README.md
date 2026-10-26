@@ -4,7 +4,7 @@
 
 - Looker Studio:[ダッシュボードを見る]https://datastudio.google.com/reporting/2622ee51-e0ef-4960-9e56-24cfc83aec76/page/TlfBG
 
-![ダッシュボード](images/ここに画像ファイル名.png)
+![alt text](images/dashboard.png)
 
 ## ① 概要
 
